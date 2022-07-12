@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  labels:
+    app: jobvacancy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jobvacancydb
+  template:
+    metadata:
+      labels:
+        app: jobvacancydb
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:10.4
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - secretRef:
+                name: jobvacancysecret

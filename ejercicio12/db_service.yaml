@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: jobvacancydb
+  labels:
+    app: jobvacancydb
+spec:
+  selector:
+    app: jobvacancydb
+  ports:
+  - protocol: TCP
+    port: 8081
+    targetPort: 5432
+  type: NodePort
